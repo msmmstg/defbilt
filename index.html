@@ -1,12 +1,101 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-  <title>Defblit - Free open-source Photo editor</title>
-  </head>
-  <body>
-    <script>
-      
-    </script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Editor Starter</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- PyScript -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>Photo Editor Starter</h1>
+        <p>Multi-file JS + PyScript groundwork for a browser photo editor.</p>
+      </div>
+      <div class="topbar-actions">
+        <label class="file-btn">
+          Open Image
+          <input id="fileInput" type="file" accept="image/*" hidden />
+        </label>
+        <button id="saveBtn" class="ghost">Save PNG</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="toolbar card">
+        <div class="group">
+          <h2>Tools</h2>
+          <div class="tool-grid">
+            <button data-tool="move" class="tool active">Move</button>
+            <button data-tool="brush" class="tool">Brush</button>
+            <button data-tool="eraser" class="tool">Eraser</button>
+            <button data-tool="text" class="tool">Text</button>
+            <button data-tool="crop" class="tool">Crop</button>
+            <button data-tool="picker" class="tool">Picker</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Adjustments</h2>
+          <label>Zoom <input id="zoom" type="range" min="25" max="400" value="100"></label>
+          <label>Rotate <input id="rotate" type="range" min="-180" max="180" value="0"></label>
+          <label>Brush Size <input id="brushSize" type="range" min="1" max="80" value="12"></label>
+          <label>Opacity <input id="opacity" type="range" min="1" max="100" value="100"></label>
+        </div>
+
+        <div class="group">
+          <h2>Filters</h2>
+          <div class="tool-grid">
+            <button data-filter="none">None</button>
+            <button data-filter="grayscale">Gray</button>
+            <button data-filter="sepia">Sepia</button>
+            <button data-filter="invert">Invert</button>
+            <button data-filter="blur">Blur</button>
+            <button data-filter="sharpen">Sharpen</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Edit</h2>
+          <div class="tool-grid">
+            <button id="undoBtn">Undo</button>
+            <button id="redoBtn">Redo</button>
+            <button id="resetBtn">Reset</button>
+            <button id="fitBtn">Fit</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>Python Panel</h2>
+          <button id="pyAnalyzeBtn">Analyze with Python</button>
+          <p class="hint">PyScript can inspect the current canvas and save prefs.</p>
+        </div>
+      </section>
+
+      <section class="stage card">
+        <div class="canvas-wrap">
+          <canvas id="editorCanvas" width="1400" height="900"></canvas>
+          <div id="emptyState" class="empty-state">
+            Drop an image or click Open Image.
+          </div>
+        </div>
+      </section>
+
+      <aside class="inspector card">
+        <h2>Inspector</h2>
+        <div id="status" class="status">Idle.</div>
+        <div id="historyInfo" class="mini-panel"></div>
+        <div id="pyOutput" class="mini-panel"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script type="module" src="./js/app.js"></script>
+  <script type="py" src="./py/main.py" config="./pyscript.json"></script>
+</body>
 </html>

@@ -1,0 +1,7 @@
+{
+  "packages": [],
+  "interpreter": "https://cdn.jsdelivr.net/pyodide/v0.29.0/full/pyodide.mjs",
+  "js_modules": {
+    "main": "./js/app.js"
+  }
+}
